@@ -13,7 +13,6 @@ import  Kingfisher
 
 class MyInfoTableViewController: UITableViewController {
 
-    
     var selfContent = [SelfContent]()
     var myInfo = [MyInfo]()
     private let networkService = NetworkService()
@@ -71,12 +70,10 @@ class MyInfoTableViewController: UITableViewController {
         return selfContent.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "selfCell", for: indexPath) as? SelfInfoTableViewCell else {fatalError()}
         
         let content_cell = selfContent[indexPath.row]
-        //print(content_cell)
         cell.imageForCell.image = content_cell.imageCell
         cell.nameForCell.text = content_cell.nameCell
         return cell

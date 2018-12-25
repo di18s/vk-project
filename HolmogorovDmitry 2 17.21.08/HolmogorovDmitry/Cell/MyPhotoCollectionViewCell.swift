@@ -23,7 +23,6 @@ class MyPhotoCollectionViewCell: UICollectionViewCell {
     public func configurePhotoCell(with photo: MyPhoto) {
         
         self.myPhotoImg.kf.setImage(with: NetworkService.urlForPhoto(photo.photo))
-        
     }
 }
 

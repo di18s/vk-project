@@ -65,11 +65,9 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     }
     
     // MARK: UICollectionViewDataSource
-    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -91,7 +89,6 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     }
     
     // MARK:- Переход на след вью при нажатии на фото
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let selectedCellIndexRow = collectionView?.indexPathsForSelectedItems
         
