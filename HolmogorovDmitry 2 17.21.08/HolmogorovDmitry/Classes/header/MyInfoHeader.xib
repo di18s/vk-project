@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MyInfoHeader" customModule="HolmogorovDmitry" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0zF-wN-xCJ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="V5m-Dc-BLt"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Abf-uX-xxq">
+                    <rect key="frame" x="5" y="2.5" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="2Fd-Ln-gB5"/>
+                        <constraint firstAttribute="height" constant="75" id="qAF-LD-Tnc"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="38"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGo-LS-o4d">
+                    <rect key="frame" x="90" y="30" width="42" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="iFA-FY-l4X"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nxh-I1-5TU">
+                    <rect key="frame" x="135" y="30" width="42" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="7yU-jx-g3Z"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Abf-uX-xxq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="7wk-P7-ZNy"/>
+                <constraint firstItem="Abf-uX-xxq" firstAttribute="centerY" secondItem="0zF-wN-xCJ" secondAttribute="centerY" id="8hW-Tg-8CR"/>
+                <constraint firstItem="0zF-wN-xCJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9iA-rt-irS"/>
+                <constraint firstItem="Nxh-I1-5TU" firstAttribute="centerY" secondItem="JGo-LS-o4d" secondAttribute="centerY" id="JDK-cW-V6R"/>
+                <constraint firstItem="JGo-LS-o4d" firstAttribute="leading" secondItem="Abf-uX-xxq" secondAttribute="trailing" constant="10" id="NuJ-4x-tBk"/>
+                <constraint firstItem="JGo-LS-o4d" firstAttribute="centerY" secondItem="Abf-uX-xxq" secondAttribute="centerY" id="WWm-Rf-Vtx"/>
+                <constraint firstItem="0zF-wN-xCJ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Y0o-RI-evR"/>
+                <constraint firstItem="Nxh-I1-5TU" firstAttribute="leading" secondItem="JGo-LS-o4d" secondAttribute="trailing" constant="3" id="dyc-uS-CaQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0zF-wN-xCJ" secondAttribute="trailing" id="tdo-dI-jUI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="backView" destination="0zF-wN-xCJ" id="ost-m1-L1B"/>
+                <outlet property="myLastName" destination="Nxh-I1-5TU" id="ccN-2Z-1dS"/>
+                <outlet property="myName" destination="JGo-LS-o4d" id="qsr-yl-B5Y"/>
+                <outlet property="selfAvatar" destination="Abf-uX-xxq" id="tX6-Sq-sV2"/>
+            </connections>
+            <point key="canvasLocation" x="138.40000000000001" y="153.37331334332833"/>
+        </view>
+    </objects>
+</document>
