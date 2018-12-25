@@ -24,16 +24,13 @@ class NewGroupTableViewController: UITableViewController, UISearchBarDelegate {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return newGroups.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "NewGroupCell"
@@ -50,6 +47,7 @@ class NewGroupTableViewController: UITableViewController, UISearchBarDelegate {
         searchNewGroup.delegate = self
         
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         networkService.loadGroupSearchAlamofire(keyword: searchText ){ [weak self ] (newGroups, error) in
@@ -64,7 +62,6 @@ class NewGroupTableViewController: UITableViewController, UISearchBarDelegate {
                 self.tableView?.reloadData()
             }
         }
-
     }
 
    

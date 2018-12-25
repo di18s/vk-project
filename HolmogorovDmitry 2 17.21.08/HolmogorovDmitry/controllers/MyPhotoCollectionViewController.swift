@@ -17,6 +17,7 @@ class MyPhotoCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.networkServiceMyPhoto.loadMyPhotoAlamofire(){ [weak self ] (my_photos, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -51,7 +52,6 @@ class MyPhotoCollectionViewController: UICollectionViewController {
     }
     
     // MARK:- Переход на след вью при нажатии на фото
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let selectedCellIndexRow = collectionView?.indexPathsForSelectedItems
 
@@ -62,6 +62,8 @@ class MyPhotoCollectionViewController: UICollectionViewController {
     }
 
 }
+
+
 extension MyPhotoCollectionViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1.0

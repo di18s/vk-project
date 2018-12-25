@@ -15,7 +15,6 @@ class MyPhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var myPhotoImg: UIImageView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         

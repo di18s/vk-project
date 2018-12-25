@@ -63,6 +63,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
             break
         }
     }
+    
     @objc func tap(){ //для рекогнайзера когда ставим или убираем лайк
         switch isLike {
         case true:
@@ -96,6 +97,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
             self.networkService.addLikeForPhotoAlamofire(ownerId: owner_id, itemId: item_id, type: "photo")
         }
     }
+    
     private func stavLike(){ //это во ViewDidLoad
         like_heart_forPhoto.setImage(UIImage(named: "20"), for: .normal)
         let reconizer = UITapGestureRecognizer(target: self, action: #selector(tap))
@@ -119,6 +121,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
         shake.toValue = to_value
         self.like_heart_forPhoto.layer.add(shake, forKey: "position")
     }
+    
     //MARK:- Animation of like
     private func animateLike() { //срабатывает когда ставим лайк
         
@@ -135,12 +138,6 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
         })
     }
     
-    
-    
-    
-    
-    
-    
     //MARK:- Animation photo
     @objc func springAnim(){ // это вроде не работает уже и можно удалить
         let animation = CASpringAnimation(keyPath: "transform.scale")
@@ -154,5 +151,4 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
         
         photo_Friend.layer.add(animation, forKey: nil)
     }
-  
 }

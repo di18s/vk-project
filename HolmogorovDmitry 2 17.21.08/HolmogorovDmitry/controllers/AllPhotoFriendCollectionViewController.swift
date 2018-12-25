@@ -14,7 +14,6 @@ import RealmSwift
 class AllPhotoCollectionViewController: UICollectionViewController {
     
     var friendId = 1 //значение передается из контроллера друзей
-    //var photos = [PhotoFriend]()
     var photosRealm: Results<PhotoFriend>?
     private var tokenPhoto: NotificationToken?
     private let networkService = NetworkService()
@@ -22,8 +21,6 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         networkService.loadUserPhotoAlamofire(ownerId: friendId){ (photos, error) in
             if let error = error {
@@ -37,9 +34,9 @@ class AllPhotoCollectionViewController: UICollectionViewController {
         
         self.photosRealm = DatabaseService.loadFromRealm(PhotoFriend.self)?.filter("user_Id = %@", self.friendId)
         
-        
         update()
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tokenPhoto?.invalidate()
@@ -82,7 +79,7 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let reuseIdentifier = "cellAllPhoto"
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? AllPhotoCollectionViewCell, let photos_Realm = self.photosRealm?.filter("user_Id = %@", self.friendId) else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? AllPhotoCollectionViewCell, let photos_Realm = self.photosRealm else {
             fatalError("The dequeued cell is not an instance of PhotoCollectionViewCell.")
         }
         
@@ -99,29 +96,16 @@ class AllPhotoCollectionViewController: UICollectionViewController {
         let selectedCellIndexRow = collectionView?.indexPathsForSelectedItems
         
         let setPhoto = segue.destination as! ZoomPhotoFriendViewController
-        guard let photos_Realm = self.photosRealm?.filter("user_Id = %@", friendId) else {
+        guard let photos_Realm = self.photosRealm else {
             fatalError("error")
         }
         
         setPhoto.linkForPhoto = photos_Realm[selectedCellIndexRow?.first?.row ?? 0].photo
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-        
-    }
-    
 }
-
 
 extension AllPhotoCollectionViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
         return CGSize(width: self.view.bounds.width, height: 400)
     }
-    
 }

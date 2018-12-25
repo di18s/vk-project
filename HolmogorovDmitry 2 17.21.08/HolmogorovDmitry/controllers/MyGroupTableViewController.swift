@@ -11,7 +11,6 @@ import SwiftyJSON
 import RealmSwift
 import  FirebaseDatabase
 
-
 class GroupTableViewController: UITableViewController {
 
     private let networkService = NetworkService()
@@ -26,9 +25,9 @@ class GroupTableViewController: UITableViewController {
         update()
         
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         token?.invalidate()
     }
     
@@ -52,7 +51,6 @@ class GroupTableViewController: UITableViewController {
                 print(error)
             }
         }
-
     }
 
     //MARK: - method load group 
@@ -69,11 +67,10 @@ class GroupTableViewController: UITableViewController {
             guard let myGroups = myGroups else { return }
             
             DatabaseService.saveToRealm(items: myGroups, config: DatabaseService.configuration, update: true)
-    
         }
     }
+    
     //MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -89,8 +86,8 @@ class GroupTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MyGroupTableViewCell, let myGroups = myGroups else {
             fatalError("The dequeued cell is not an instance of VKTableViewCell.")
         }
+        
         cell.configureGroupCell(with: myGroups[indexPath.row])
-
 
         return cell
     }
@@ -116,7 +113,6 @@ class GroupTableViewController: UITableViewController {
     //MARK: - add new group func
     func addGroup(group: Group) {
         do {
-            //let realm = try Realm()
             self.realm?.beginWrite()
             self.realm?.add(group, update: true)
             try realm?.commitWrite()
@@ -129,7 +125,6 @@ class GroupTableViewController: UITableViewController {
         let data = [Session.instance].map{$0.toAnyObject}
         let dbLink = Database.database().reference()
         dbLink.child("User").setValue(data)
-//        print(data)
         self.tableView.reloadData()
     }
 
@@ -138,8 +133,6 @@ class GroupTableViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
-
     
     //MARK: - leave from group
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -147,7 +140,6 @@ class GroupTableViewController: UITableViewController {
         if editingStyle == .delete {
             self.networkService.leaveFromGroupAlamofire(groupId: group.idGroup)
             do {
-                //let realm = try Realm()
                 self.realm?.beginWrite()
                 self.realm?.delete(group)
                 try realm?.commitWrite()

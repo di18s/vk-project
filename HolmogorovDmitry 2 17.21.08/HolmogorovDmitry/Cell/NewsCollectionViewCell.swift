@@ -66,14 +66,11 @@ class NewsCollectionViewCell: UICollectionViewCell {
         
     }
   
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         stavLikeNews()
-        
 
     }
-    
     
     private func runShakeLikeNews(repeats: Bool){
         shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
@@ -94,6 +91,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
                         self.labelLike.transform = .identity
         })
     }
+    
     func touchLikeForNews(_ infoForNews: News){
         switch infoForNews.isLike {
         case 1:
@@ -116,6 +114,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
             break
         }
     }
+    
     @objc func tapForNews(){
         switch isLike {
         case true:
@@ -147,6 +146,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
             isLike = true
         }
     }
+    
     private func stavLikeNews(){
         buttonLike.setImage(UIImage(named: "20"), for: .normal)
         let reconizer = UITapGestureRecognizer(target: self, action: #selector(tapForNews))
@@ -170,5 +170,4 @@ class NewsCollectionViewCell: UICollectionViewCell {
         shake.toValue = to_value
         self.buttonLike.layer.add(shake, forKey: "position")
     }
-    
 }

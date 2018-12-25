@@ -14,7 +14,6 @@ import FirebaseDatabase
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    static var friends = [Friend]()
     var searchFr = [Friend]()
     
     var friendsForSearch: Results<Friend>?
@@ -82,13 +81,14 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                 print(error)
             }
         }
-        
     }
         
     //MARK:- настройка хедера секций
     func createHeaderLetters(results: Results<Friend>){     //самая главная функция
+        
         self.headerTitles.removeAll()
         self.friendDict.removeAll()
+        
         for friend in results {
             let friendKey = String(friend.last_Name.first ?? "D")
             if var friendValue = self.friendDict[friendKey]{
@@ -98,6 +98,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                 self.friendDict[friendKey] = [friend]
             }
         }
+        
         self.headerTitles = [String](friendDict.keys)
         self.headerTitles = self.headerTitles.sorted(by:{$0 < $1})
     }
@@ -170,8 +171,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                 let friend = self.tableView.cellForRow(at: indexPath) as! FriendTableViewCell
                 let friendId = friend.user_id
                 friendsPhotos.friendId = friendId //приравниваем значение из класса друзей к значению переменной класса AllPhotoCVC
-                
-                
             }
         }
     }
@@ -184,7 +183,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     @objc func hideKb(_ sender: UITapGestureRecognizer){
         self.friendSearchBar.endEditing(true)
         self.friendSearchBar.text = nil
- 
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -217,6 +215,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
 }
 
+
 //MARK: - Prefetching
 extension FriendsTableViewController: UITableViewDataSourcePrefetching{
     
@@ -228,6 +227,5 @@ extension FriendsTableViewController: UITableViewDataSourcePrefetching{
         }
         ImagePrefetcher(urls: urls).start()
     }
-  
 }
 

@@ -26,29 +26,25 @@ class NetworkService {
         let params: Parameters = [
             "access_token": Session.instance.token,
             "order": "name",
-            //                "order": "hints",
-            //"count": "10",
             "fields": "photo_100",
             "v": "5.87",
             "user_id": Session.instance.userId
         ]
         
-            Alamofire.request(baseURL + path, method: .get, parameters: params).responseJSON(queue: DispatchQueue.global()){ (response) in
+        Alamofire.request(baseURL + path, method: .get, parameters: params).responseJSON(queue: DispatchQueue.global()){ (response) in
+            
+            switch response.result {
+            case .failure(let error):
+                completion?(nil, error)
                 
-                switch response.result {
-                case .failure(let error):
-                    completion?(nil, error)
-                    
-                case .success(let value):
-                    //print(value)
-                    let json = JSON(value)
-                    
-                    let friends = json["response"]["items"].arrayValue.map { Friend(json: $0) }
-                    completion?(friends, nil)
-                }
+            case .success(let value):
+                //print(value)
+                let json = JSON(value)
+                
+                let friends = json["response"]["items"].arrayValue.map { Friend(json: $0) }
+                completion?(friends, nil)
             }
-        
-        
+        }
     }
     
     //MARK:- Функция загрузки фото друга
