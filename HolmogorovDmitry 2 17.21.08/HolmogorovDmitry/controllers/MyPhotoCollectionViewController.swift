@@ -1,34 +1,55 @@
-//
-//  MyPhotoCollectionViewController.swift
-//  HolmogorovDmitry
-//
-//  Created by Дмитрий on 03/12/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import  SwiftyJSON
 import  Kingfisher
 import RealmSwift
 
 class MyPhotoCollectionViewController: UICollectionViewController {
-    var myPhoto = [MyPhoto]()
-    private let networkServiceMyPhoto = NetworkService()
+    //var myPhoto = [MyPhoto]()
+    var myPhotosRealm: Results<MyPhoto>?
+    private var tokenMyPhoto: NotificationToken?
+    private let networkServiceMyPhoto = PhotoNetwork()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.networkServiceMyPhoto.loadMyPhotoAlamofire(){ [weak self ] (my_photos, error) in
+        self.networkServiceMyPhoto.loadMyPhotoAlamofire(){ (my_photos, error) in
+            
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            guard let photo = my_photos, let self = self else { return }
+            guard let photo = my_photos else { return }
             
-            self.myPhoto = photo
-
-            DispatchQueue.main.async {
-                self.collectionView?.reloadData()
+            DatabaseService.saveToRealm(items: photo, config: DatabaseService.configuration, update: true)
+        }
+        
+        self.myPhotosRealm = DatabaseService.loadFromRealm(MyPhoto.self)
+        updateMyPhoto()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tokenMyPhoto?.invalidate()
+    }
+    
+    //MARK: - update realm
+    private func updateMyPhoto(){
+        
+        self.tokenMyPhoto = self.myPhotosRealm?.observe { [weak self] (changes: RealmCollectionChange) in
+            
+            guard let collectionView = self?.collectionView else { return }
+            
+            switch changes {
+            case .initial:
+                collectionView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                collectionView.performBatchUpdates({
+                    collectionView.insertItems(at: insertions.map({ IndexPath(row: $0, section: 0) }))
+                    collectionView.deleteItems(at: deletions.map({ IndexPath(row: $0, section: 0)}))
+                    collectionView.reloadItems(at: modifications.map({ IndexPath(row: $0, section: 0) }))
+                }, completion: nil)
+            case .error(let error):
+                fatalError("\(error)")
             }
         }
     }
@@ -39,14 +60,14 @@ class MyPhotoCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myPhoto.count
+        return myPhotosRealm?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let reuseIdentifier = "myPhotoCell"
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? MyPhotoCollectionViewCell else {fatalError()}
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? MyPhotoCollectionViewCell, let myPhotos_Realm = self.myPhotosRealm else {fatalError()}
         
-        let photo = self.myPhoto[indexPath.row]
+        let photo = myPhotos_Realm[indexPath.row]
         cell.myPhotoImg.kf.setImage(with: URL(string: photo.photo))
         return cell
     }
@@ -56,9 +77,10 @@ class MyPhotoCollectionViewController: UICollectionViewController {
         let selectedCellIndexRow = collectionView?.indexPathsForSelectedItems
 
         let setPhoto = segue.destination as! ZoomPhotoFriendViewController
-        
-        setPhoto.linkForPhoto = self.myPhoto[selectedCellIndexRow?.first?.row ?? 0].photo
-
+        guard let myPhotosRealm = self.myPhotosRealm else {
+            fatalError()
+        }
+        setPhoto.linkForPhoto = myPhotosRealm[selectedCellIndexRow?.first?.row ?? 0].photo
     }
 
 }

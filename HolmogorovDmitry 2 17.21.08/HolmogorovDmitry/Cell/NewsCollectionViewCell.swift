@@ -34,7 +34,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private var numberLike: Int = 0
     private var isLike: Bool = false
     private var shakeLikeNews: Timer!
-    private let networkService = NetworkService()
+    private let networkService = NewsNetwork()
 
     
     //MARK: - configure cell
@@ -58,9 +58,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.countView.text = String(news.countViewNews)
         
         
-        self.imageNews.kf.setImage(with: NetworkService.urlForPhoto(news.photoNews))
+        self.imageNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.photoNews))
      
-        self.userAvatarForNews.kf.setImage(with: NetworkService.urlForPhoto(news.avatarUser))
+        self.userAvatarForNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.avatarUser))
         self.userNameForNews.text = news.nameUser
         self.userLastNameForNEws.text = news.lastNameUser
         

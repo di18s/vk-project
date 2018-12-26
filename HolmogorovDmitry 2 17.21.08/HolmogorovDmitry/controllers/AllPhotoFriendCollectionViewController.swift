@@ -1,11 +1,3 @@
-//
-//  PhotoCollectionViewController.swift
-//  contraints
-//
-//  Created by Дмитрий on 25/09/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import  SwiftyJSON
 import  Kingfisher
@@ -16,7 +8,7 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     var friendId = 1 //значение передается из контроллера друзей
     var photosRealm: Results<PhotoFriend>?
     private var tokenPhoto: NotificationToken?
-    private let networkService = NetworkService()
+    private let networkService = PhotoNetwork()
     
     
     override func viewDidLoad() {

@@ -20,7 +20,7 @@ class NewGroupTableViewCell: UITableViewCell {
         
         self.labelNewGroup.text = group.nameGroup
         self.infoLabelNewGroup.text = group.infoLabel
-        self.imageNewGroup.kf.setImage(with: NetworkService.urlForPhoto(group.avatarGroup))
+        self.imageNewGroup.kf.setImage(with: PhotoNetwork.urlForPhoto(group.avatarGroup))
     }
     
     override func awakeFromNib() {

@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  contraints
-//
-//  Created by Дмитрий on 20/09/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import Foundation
 

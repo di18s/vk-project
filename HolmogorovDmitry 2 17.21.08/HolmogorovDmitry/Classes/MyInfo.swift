@@ -6,8 +6,7 @@ class MyInfo {
     var lastName: String = ""
     var myAvatar: String = ""
     
-    convenience init(json: JSON) {
-        self.init()
+    init(json: JSON) {
         
         self.name = json["first_name"].stringValue
         self.lastName = json["last_name"].stringValue

@@ -15,7 +15,7 @@ class MyInfoTableViewController: UITableViewController {
 
     var selfContent = [SelfContent]()
     var myInfo = [MyInfo]()
-    private let networkService = NetworkService()
+    private let networkService = MyInfoNetwork()
     
     
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ class MyInfoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "MyInfoHeader") as? MyInfoHeader, self.myInfo.count > section{
             
-            view.selfAvatar.kf.setImage(with: NetworkService.urlForPhoto(myInfo[0].myAvatar))
+            view.selfAvatar.kf.setImage(with: PhotoNetwork.urlForPhoto(myInfo[0].myAvatar))
             view.myName.text = self.myInfo[0].name
             view.myLastName.text = self.myInfo[0].lastName
             view.backView.backgroundColor = UIColor.white

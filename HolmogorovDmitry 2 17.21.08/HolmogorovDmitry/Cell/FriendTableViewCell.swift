@@ -32,7 +32,7 @@ class FriendTableViewCell: UITableViewCell{
         
         self.friendName.text = friend.name
         self.lastName.text = friend.last_Name
-        self.photo.kf.setImage(with: NetworkService.urlForPhoto(friend.avatar))
+        self.photo.kf.setImage(with: PhotoNetwork.urlForPhoto(friend.avatar))
         self.user_id = friend.userId
     }
     

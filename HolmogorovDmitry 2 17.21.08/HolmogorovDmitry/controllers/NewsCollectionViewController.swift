@@ -4,7 +4,7 @@ import UIKit
 class NewsCollectionViewController: UICollectionViewController {
 
     private var newsArray = [News]()
-    var networkService = NetworkService()
+    var networkService = NewsNetwork()
     
     override func viewDidLoad() {
         super.viewDidLoad()

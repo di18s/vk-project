@@ -1,11 +1,3 @@
-//
-//  VKTableViewController.swift
-//  contraints
-//
-//  Created by Дмитрий on 21/09/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import SwiftyJSON
 import  Kingfisher
@@ -14,18 +6,14 @@ import FirebaseDatabase
 
 class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     
-    var searchFr = [Friend]()
-    
     var friendsForSearch: Results<Friend>?
-    
-
     var userId = 1
+    
     private var headerTitles = [String]()
     var friendDict = [String:[Friend]]()
     private var token: NotificationToken?
 
-    
-    private let networkService = NetworkService()
+    private let networkService = FriendsNetwork()
     @IBOutlet weak var friendSearchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -34,6 +22,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         setupSearchBar()
         
         self.friendsForSearch = DatabaseService.loadFromRealm(Friend.self)
+        
         
         guard let results = self.friendsForSearch else {fatalError()}
         self.createHeaderLetters(results: results)
@@ -68,15 +57,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
                 self?.tableView.reloadData()
             case .update(_, _, _, _):
                 self?.tableView.reloadData()
-//            case .update(_, let deletions, let insertions, let modifications):
-//                self?.tableView.beginUpdates()
-//                self?.tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
-//                                           with: .automatic)
-//                self?.tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
-//                                           with: .automatic)
-//                self?.tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
-//                                           with: .automatic)
-//                self?.tableView.endUpdates()
             case .error(let error):
                 print(error)
             }
@@ -84,25 +64,32 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     }
         
     //MARK:- настройка хедера секций
-    func createHeaderLetters(results: Results<Friend>){     //самая главная функция
+    func createHeaderLetters(results: Results<Friend>){  //самая главная функция
         
-        self.headerTitles.removeAll()
-        self.friendDict.removeAll()
-        
-        for friend in results {
-            let friendKey = String(friend.last_Name.first ?? "D")
-            if var friendValue = self.friendDict[friendKey]{
-                friendValue.append(friend)
-                self.friendDict[friendKey] = friendValue
-            } else {
-                self.friendDict[friendKey] = [friend]
+        //DispatchQueue.global().async {
+            var headerTitles = Array<String>()
+            var friendDict = Dictionary<String, [Friend]>()
+            
+            for friend in results {
+                let friendKey = String(friend.last_Name.first ?? "D")
+                
+                if var friendValue = friendDict[friendKey]{
+                    friendValue.append(friend)
+                    friendDict[friendKey] = friendValue
+                } else {
+                    friendDict[friendKey] = [friend]
+                }
             }
-        }
-        
-        self.headerTitles = [String](friendDict.keys)
-        self.headerTitles = self.headerTitles.sorted(by:{$0 < $1})
+            
+            headerTitles = (friendDict.keys).sorted(by:{$0 < $1})
+            
+            //DispatchQueue.main.async {
+                self.friendDict = friendDict
+                self.headerTitles = headerTitles
+            //}
+        //}
     }
-    
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsHeader") as? FriendsHeader, headerTitles.count > section {
 
@@ -223,7 +210,7 @@ extension FriendsTableViewController: UITableViewDataSourcePrefetching{
         let urls = indexPaths.compactMap { indexPath -> URL? in
             let friendKey = headerTitles[indexPath.section]
             guard let friendValue = friendDict[friendKey] else {return nil}
-            return NetworkService.urlForPhoto(friendValue[indexPath.row].avatar)
+            return PhotoNetwork.urlForPhoto(friendValue[indexPath.row].avatar)
         }
         ImagePrefetcher(urls: urls).start()
     }

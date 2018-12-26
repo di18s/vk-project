@@ -13,7 +13,7 @@ class NewGroupTableViewController: UITableViewController, UISearchBarDelegate {
     
     public var newGroups = [Group]()
     @IBOutlet weak var searchNewGroup: UISearchBar!
-    private let networkService = NetworkService()
+    private let networkService = GroupNetwork()
     
     override func viewDidLoad() {
         super.viewDidLoad()

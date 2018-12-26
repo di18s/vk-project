@@ -13,15 +13,27 @@ import  FirebaseDatabase
 
 class GroupTableViewController: UITableViewController {
 
-    private let networkService = NetworkService()
+    private let networkService = GroupNetwork()
     private var myGroups: Results<Group>?
     var token: NotificationToken?
-    var realm = try? Realm()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadFromJSON()
+        self.myGroups = DatabaseService.loadFromRealm(Group.self)
+        
+        networkService.loadUserGroupsAlamofire(){(my_Groups, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let myGroups = my_Groups else { return }
+            
+            DatabaseService.saveToRealm(items: myGroups, config: DatabaseService.configuration, update: true)
+        }
+        
         update()
         
     }
@@ -50,23 +62,6 @@ class GroupTableViewController: UITableViewController {
             case .error(let error):
                 print(error)
             }
-        }
-    }
-
-    //MARK: - method load group 
-    func loadFromJSON(){
-        
-        self.myGroups = DatabaseService.loadFromRealm(Group.self)
-        
-        networkService.loadUserGroupsAlamofire(){(myGroups, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            guard let myGroups = myGroups else { return }
-            
-            DatabaseService.saveToRealm(items: myGroups, config: DatabaseService.configuration, update: true)
         }
     }
     
@@ -113,8 +108,9 @@ class GroupTableViewController: UITableViewController {
     //MARK: - add new group func
     func addGroup(group: Group) {
         do {
-            self.realm?.beginWrite()
-            self.realm?.add(group, update: true)
+            let realm = try? Realm()
+            realm?.beginWrite()
+            realm?.add(group, update: true)
             try realm?.commitWrite()
         } catch {
             print(error)
@@ -140,8 +136,9 @@ class GroupTableViewController: UITableViewController {
         if editingStyle == .delete {
             self.networkService.leaveFromGroupAlamofire(groupId: group.idGroup)
             do {
-                self.realm?.beginWrite()
-                self.realm?.delete(group)
+                let realm = try? Realm()
+                realm?.beginWrite()
+                realm?.delete(group)
                 try realm?.commitWrite()
             } catch {
                 print(error)

@@ -18,13 +18,14 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
     private var numberLike: Int = 0
     private var isLike: Bool = false
     private var shakeLike: Timer!
-    private let networkService = NetworkService()
+    private let networkService = PhotoNetwork()
+    private var likeNetworkService = LikeNetwork()
     var owner_id = 0
     var item_id = 0
     
     public func configurePhotoFriendCell(with photo: PhotoFriend) {
         
-        self.photo_Friend.kf.setImage(with: NetworkService.urlForPhoto(photo.photo))
+        self.photo_Friend.kf.setImage(with: PhotoNetwork.urlForPhoto(photo.photo))
         self.owner_id = photo.user_Id
         self.item_id = photo.photo_Id
     }
@@ -85,7 +86,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
             count_like_photo.textColor = UIColor.black
             runShakeLike(repeats: true)
             isLike = false
-            self.networkService.dismissLikeForPhotoAlamofire(ownerId: self.owner_id, itemId: self.item_id, type: "photo")
+            self.likeNetworkService.dismissLikeForPhotoAlamofire(ownerId: self.owner_id, itemId: self.item_id, type: "photo")
         case false:
             like_heart_forPhoto.setImage(UIImage(named: "21"), for: .normal)
             count_like_photo.text = String(Int(count_like_photo.text!)! + 1)
@@ -94,7 +95,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
             animateLike() //прилетает сердечко и цыфра
             shakeLike.invalidate()
             isLike = true
-            self.networkService.addLikeForPhotoAlamofire(ownerId: owner_id, itemId: item_id, type: "photo")
+            self.likeNetworkService.addLikeForPhotoAlamofire(ownerId: owner_id, itemId: item_id, type: "photo")
         }
     }
     

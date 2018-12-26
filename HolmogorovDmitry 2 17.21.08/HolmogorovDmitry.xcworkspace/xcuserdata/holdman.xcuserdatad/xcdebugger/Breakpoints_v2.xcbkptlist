@@ -36,13 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/Network/NetworkService.swift"
-            timestampString = "567337129.931864"
+            timestampString = "567513229.798179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "loadNewsAlamofire(completion:)"
-            landmarkType = "7">
+            startingLineNumber = "251"
+            endingLineNumber = "251">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -84,13 +82,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/Network/NetworkService.swift"
-            timestampString = "567337129.931919"
+            timestampString = "567513229.798244"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
-            landmarkName = "loadSelfInfoAlamofire(completion:)"
-            landmarkType = "7">
+            startingLineNumber = "378"
+            endingLineNumber = "378">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -116,13 +112,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/MyInfoTableViewController.swift"
-            timestampString = "566917001.042564"
+            timestampString = "567516243.657241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "MyInfoTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -131,14 +127,221 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "HolmogorovDmitry/Network/NetworkService.swift"
-            timestampString = "567337129.932036"
+            filePath = "HolmogorovDmitry/Cell/NewsCollectionViewCell.swift"
+            timestampString = "567516243.657431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "loadUserPhotoAlamofire(ownerId:completion:)"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "shakeAnimForNews()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.657559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.657757"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.657901"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "tableView(_:prefetchRowsAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.6580091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "tableView(_:prefetchRowsAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.658129"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "tableView(_:prefetchRowsAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.658227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.658327"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567516243.658397"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/MyGroupTableViewController.swift"
+            timestampString = "567516243.658498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/Network/DatabaseService.swift"
+            timestampString = "567513229.801155"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "saveToRealm(items:config:update:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 1 of static HolmogorovDmitry.DatabaseService.saveToRealm&lt;A where A: RealmSwift.Object&gt;(items: Swift.Array&lt;A&gt;, config: RealmSwift.Realm.Configuration, update: Swift.Bool) -&gt; Swift.Optional&lt;RealmSwift.Realm&gt;"
+                  moduleName = "HolmogorovDmitry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdman/Downloads/git%20projects/HolmogorovDmitry%202%2017.21.08/HolmogorovDmitry/Network/DatabaseService.swift"
+                  timestampString = "567511705.9040411"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "22">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 2 of static HolmogorovDmitry.DatabaseService.saveToRealm&lt;A where A: RealmSwift.Object&gt;(items: Swift.Array&lt;A&gt;, config: RealmSwift.Realm.Configuration, update: Swift.Bool) -&gt; Swift.Optional&lt;RealmSwift.Realm&gt;"
+                  moduleName = "HolmogorovDmitry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdman/Downloads/git%20projects/HolmogorovDmitry%202%2017.21.08/HolmogorovDmitry/Network/DatabaseService.swift"
+                  timestampString = "567511705.906361"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "8">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static HolmogorovDmitry.DatabaseService.saveToRealm&lt;A where A: RealmSwift.Object&gt;(items: Swift.Array&lt;A&gt;, config: RealmSwift.Realm.Configuration, update: Swift.Bool) -&gt; Swift.Optional&lt;RealmSwift.Realm&gt;"
+                  moduleName = "HolmogorovDmitry"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdman/Downloads/git%20projects/HolmogorovDmitry%202%2017.21.08/HolmogorovDmitry/Network/DatabaseService.swift"
+                  timestampString = "567511705.909292"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "117">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
