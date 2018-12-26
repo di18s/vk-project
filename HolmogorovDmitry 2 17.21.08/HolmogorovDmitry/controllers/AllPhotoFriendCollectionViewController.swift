@@ -10,7 +10,6 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     private var tokenPhoto: NotificationToken?
     private let networkService = PhotoNetwork()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +55,22 @@ class AllPhotoCollectionViewController: UICollectionViewController {
         }
     }
     
-    // MARK: UICollectionViewDataSource
+    // MARK:- Переход на след вью при нажатии на фото
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let selectedCellIndexRow = collectionView?.indexPathsForSelectedItems
+        
+        let setPhoto = segue.destination as! ZoomPhotoFriendViewController
+        guard let photos_Realm = self.photosRealm else {
+            fatalError("error")
+        }
+        
+        setPhoto.linkForPhoto = photos_Realm[selectedCellIndexRow?.first?.row ?? 0].photo
+    }
+}
+
+// MARK: UICollectionViewDataSource
+extension AllPhotoCollectionViewController{
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -80,18 +94,8 @@ class AllPhotoCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK:- Переход на след вью при нажатии на фото
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let selectedCellIndexRow = collectionView?.indexPathsForSelectedItems
-        
-        let setPhoto = segue.destination as! ZoomPhotoFriendViewController
-        guard let photos_Realm = self.photosRealm else {
-            fatalError("error")
-        }
-        
-        setPhoto.linkForPhoto = photos_Realm[selectedCellIndexRow?.first?.row ?? 0].photo
-    }
 }
+
 
 extension AllPhotoCollectionViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{

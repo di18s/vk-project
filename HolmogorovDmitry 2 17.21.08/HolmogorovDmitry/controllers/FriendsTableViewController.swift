@@ -23,7 +23,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         
         self.friendsForSearch = DatabaseService.loadFromRealm(Friend.self)
         
-        
         guard let results = self.friendsForSearch else {fatalError()}
         self.createHeaderLetters(results: results)
         
@@ -90,54 +89,6 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         //}
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsHeader") as? FriendsHeader, headerTitles.count > section {
-
-            view.myLabel.text = headerTitles[section]
-            return view
-        }
-        return UIView()
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 55
-    }
-    
-    //MARK:- настройка бокового поиска
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-
-        return headerTitles
-    }
-
-    //MARK:- Настраиваем ячейки
-    override func numberOfSections(in tableView: UITableView) -> Int {
-       
-        return headerTitles.count
-    }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let friendKey = headerTitles[section]
-        if let friendValue = friendDict[friendKey]{
-            return friendValue.count
-        }
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cellIdentifier = "CellView"
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
-            fatalError("The dequeued cell is not an instance of VKTableViewCell.")
-        }
-        
-        let friendKey = headerTitles[indexPath.section]
-        if let friendValue = friendDict[friendKey]{
-            cell.configureFriendCell(with: friendValue[indexPath.row])
-        }
-        return cell
-    }
-    
-    
     //MARK:- anim cell
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        let translationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 400, 0)
@@ -162,7 +113,12 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         }
     }
 
-    //MARK:- search bar
+    
+}
+
+//MARK:- Работа с search bar
+extension FriendsTableViewController{
+    
     func setupSearchBar(){
         friendSearchBar.delegate = self
     }
@@ -171,7 +127,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
         self.friendSearchBar.endEditing(true)
         self.friendSearchBar.text = nil
     }
-
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil
         searchBar.setShowsCancelButton(false, animated: true)
@@ -200,6 +156,59 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             self.tableView.reloadData()
         }
     }
+}
+
+
+//MARK: - Создание ячеек, хедера, бокового меню
+extension FriendsTableViewController{
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "FriendsHeader") as? FriendsHeader, headerTitles.count > section {
+            
+            view.myLabel.text = headerTitles[section]
+            return view
+        }
+        return UIView()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 55
+    }
+    
+    //MARK:- настройка бокового поиска
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        
+        return headerTitles
+    }
+    
+    //MARK:- Настраиваем ячейки
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return headerTitles.count
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let friendKey = headerTitles[section]
+        if let friendValue = friendDict[friendKey]{
+            return friendValue.count
+        }
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cellIdentifier = "CellView"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? FriendTableViewCell  else {
+            fatalError("The dequeued cell is not an instance of VKTableViewCell.")
+        }
+        
+        let friendKey = headerTitles[indexPath.section]
+        if let friendValue = friendDict[friendKey]{
+            cell.configureFriendCell(with: friendValue[indexPath.row])
+        }
+        return cell
+    }
+    
 }
 
 

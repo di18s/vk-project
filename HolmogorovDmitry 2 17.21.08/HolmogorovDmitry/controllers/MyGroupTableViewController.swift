@@ -57,35 +57,19 @@ class GroupTableViewController: UITableViewController {
         }
     }
     
-    //MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+    
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return myGroups?.count ?? 0
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "GroupCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MyGroupTableViewCell, let myGroups = myGroups else {
-            fatalError("The dequeued cell is not an instance of VKTableViewCell.")
-        }
-        
-        cell.configureGroupCell(with: myGroups[indexPath.row])
-
-        return cell
-    }
- 
+//MARK: - Работа с сетью: добавление, удаление групп
+extension GroupTableViewController{
+    
     //MARK:- add new group segue
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         // Проверяем идентификатор, чтобы убедится, что это нужный переход
         if segue.identifier == "addGroup" {
             // Получаем ссылку на контроллер, с которого осуществлен переход
             let newGroupController = segue.source as! NewGroupTableViewController
-
+            
             // Получаем индекс выделенной ячейки
             if let indexPath = newGroupController.tableView.indexPathForSelectedRow {
                 // Получаем группу по индексу
@@ -115,7 +99,7 @@ class GroupTableViewController: UITableViewController {
         dbLink.child("User").setValue(data)
         self.tableView.reloadData()
     }
-
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -137,5 +121,31 @@ class GroupTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
         }
+    }
+}
+
+
+//MARK: - Работа с DataSource
+extension GroupTableViewController{
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return myGroups?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "GroupCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MyGroupTableViewCell, let myGroups = myGroups else {
+            fatalError("The dequeued cell is not an instance of VKTableViewCell.")
+        }
+        
+        cell.configureGroupCell(with: myGroups[indexPath.row])
+        
+        return cell
     }
 }
