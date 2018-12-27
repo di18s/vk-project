@@ -35,11 +35,11 @@ class AllPhotoCollectionViewController: UICollectionViewController {
     
     //MARK: - update realm
     private func update(){
-        
+
         self.tokenPhoto = self.photosRealm?.observe { [weak self] (changes: RealmCollectionChange) in
-            
+
             guard let collectionView = self?.collectionView else { return }
-            
+
             switch changes {
             case .initial:
                 collectionView.reloadData()

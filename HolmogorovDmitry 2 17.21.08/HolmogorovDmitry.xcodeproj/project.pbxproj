@@ -46,13 +46,13 @@
 		E88AFDDA21B41683009E9B75 /* MyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88AFDD921B41683009E9B75 /* MyInfo.swift */; };
 		E8AFD07021538E2100D4EE4A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AFD06F21538E2100D4EE4A /* AppDelegate.swift */; };
 		E8AFD07221538E2100D4EE4A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AFD07121538E2100D4EE4A /* ViewController.swift */; };
-		E8AFD07721538E2200D4EE4A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8AFD07621538E2200D4EE4A /* Assets.xcassets */; };
 		E8AFD07A21538E2200D4EE4A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8AFD07821538E2200D4EE4A /* LaunchScreen.storyboard */; };
 		E8AFD0882154C86F00D4EE4A /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AFD0872154C86F00D4EE4A /* FriendTableViewCell.swift */; };
 		E8AFD08A2154DC3B00D4EE4A /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AFD0892154DC3B00D4EE4A /* FriendsTableViewController.swift */; };
 		E8AFD08C2154E15E00D4EE4A /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AFD08B2154E15E00D4EE4A /* Friend.swift */; };
 		E8B9DF112195C43E0009C1E7 /* CustomPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B9DF102195C43E0009C1E7 /* CustomPopAnimator.swift */; };
 		E8BBD7102191E99200F33A47 /* NewsNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BBD70F2191E99200F33A47 /* NewsNetwork.swift */; };
+		E8BE711F21D4E35D00DAF207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8BE711E21D4E35D00DAF207 /* Assets.xcassets */; };
 		E8C5108221B5134000A1FDB0 /* MyPhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5108121B5134000A1FDB0 /* MyPhotoCollectionViewController.swift */; };
 		E8C5108421B5137100A1FDB0 /* MyPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5108321B5137100A1FDB0 /* MyPhotoCollectionViewCell.swift */; };
 		E8C5108621B58D1000A1FDB0 /* MyPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C5108521B58D1000A1FDB0 /* MyPhoto.swift */; };
@@ -102,7 +102,6 @@
 		E8AFD06C21538E2000D4EE4A /* HolmogorovDmitry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HolmogorovDmitry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8AFD06F21538E2100D4EE4A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8AFD07121538E2100D4EE4A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E8AFD07621538E2200D4EE4A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8AFD07921538E2200D4EE4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8AFD07B21538E2200D4EE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8AFD0872154C86F00D4EE4A /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		E8AFD08B2154E15E00D4EE4A /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		E8B9DF102195C43E0009C1E7 /* CustomPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPopAnimator.swift; sourceTree = "<group>"; };
 		E8BBD70F2191E99200F33A47 /* NewsNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsNetwork.swift; sourceTree = "<group>"; };
+		E8BE711E21D4E35D00DAF207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		E8C5108121B5134000A1FDB0 /* MyPhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		E8C5108321B5137100A1FDB0 /* MyPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		E8C5108521B58D1000A1FDB0 /* MyPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPhoto.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 				E8143643215C2819007B040F /* Classes */,
 				E8143633215A5F7D007B040F /* controllers */,
 				E8143634215A6028007B040F /* Cell */,
-				E8AFD07621538E2200D4EE4A /* Assets.xcassets */,
+				E8BE711E21D4E35D00DAF207 /* Assets.xcassets */,
 				E8AFD07821538E2200D4EE4A /* LaunchScreen.storyboard */,
 				E8AFD07B21538E2200D4EE4A /* Info.plist */,
 			);
@@ -352,7 +352,7 @@
 				E8AFD07A21538E2200D4EE4A /* LaunchScreen.storyboard in Resources */,
 				E88AFDD021B403D1009E9B75 /* MyInfoHeader.xib in Resources */,
 				E85311FC21B044BF0084D125 /* GoogleService-Info.plist in Resources */,
-				E8AFD07721538E2200D4EE4A /* Assets.xcassets in Resources */,
+				E8BE711F21D4E35D00DAF207 /* Assets.xcassets in Resources */,
 				E83B98702163C90B00C361D6 /* FriendsHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

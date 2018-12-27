@@ -9,7 +9,6 @@ class GroupTableViewController: UITableViewController {
     private var myGroups: Results<Group>?
     var token: NotificationToken?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,9 +19,7 @@ class GroupTableViewController: UITableViewController {
                 print(error.localizedDescription)
                 return
             }
-            
             guard let myGroups = my_Groups else { return }
-            
             DatabaseService.saveToRealm(items: myGroups, config: DatabaseService.configuration, update: true)
         }
         
@@ -35,9 +32,9 @@ class GroupTableViewController: UITableViewController {
         token?.invalidate()
     }
     
-    //MARK: - update realm
+    //MARK: - update tableView
     private func update(){
-        
+ 
         self.token = self.myGroups?.observe { [weak self] (changes: RealmCollectionChange) in
             switch changes {
             case .initial:
@@ -45,18 +42,17 @@ class GroupTableViewController: UITableViewController {
             case .update(_, let deletions, let insertions, let modifications):
                 self?.tableView.beginUpdates()
                 self?.tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0)}),
-                                           with: .automatic)
+                                     with: .automatic)
                 self?.tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
-                                           with: .automatic)
+                                     with: .automatic)
                 self?.tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
-                                           with: .automatic)
+                                     with: .automatic)
                 self?.tableView.endUpdates()
             case .error(let error):
                 print(error)
             }
         }
     }
-    
     
 }
 
