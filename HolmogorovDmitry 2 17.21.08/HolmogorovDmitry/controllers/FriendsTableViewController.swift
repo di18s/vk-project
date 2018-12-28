@@ -63,8 +63,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
-    /////////////////////////////////
-    ////////////////////////////////
+    
     //MARK:- настройка хедера секций
     func createHeaderLetters(results: Results<Friend>){  //самая главная функция
         
