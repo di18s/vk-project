@@ -63,11 +63,10 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
-    
+
     //MARK:- настройка хедера секций
     func createHeaderLetters(results: Results<Friend>){  //самая главная функция
         
-        //DispatchQueue.global().async {
             var headerTitles = Array<String>()
             var friendDict = Dictionary<String, [Friend]>()
             
@@ -84,24 +83,21 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             
             headerTitles = (friendDict.keys).sorted(by:{$0 < $1})
             
-            //DispatchQueue.main.async {
                 self.friendDict = friendDict
                 self.headerTitles = headerTitles
-            //}
-        //}
+        
     }
 
     //MARK:- anim cell
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let translationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 400, 0)
-        let degree: Double = 90
-        let rotationAngle = CGFloat(degree * Double.pi / 180)
-        let rotationTransform = CATransform3DMakeRotation(rotationAngle, 0, 1, 0)
-        cell.layer.transform = rotationTransform
-        UIView.animate(withDuration: 0.8, delay: 0.1 * Double(indexPath.row), options: .curveEaseInOut, animations: {
-            cell.layer.transform = CATransform3DIdentity
-        })
-    }
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let degree: Double = 90
+//        let rotationAngle = CGFloat(degree * Double.pi / 180)
+//        let rotationTransform = CATransform3DMakeRotation(rotationAngle, 0, 1, 0)
+//        cell.layer.transform = rotationTransform
+//        UIView.animate(withDuration: 0.8, delay: 0.1 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+//            cell.layer.transform = CATransform3DIdentity
+//        })
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
