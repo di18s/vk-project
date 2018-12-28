@@ -55,6 +55,8 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
             case .initial:
                 self?.tableView.reloadData()
             case .update(_, _, _, _):
+                guard let result = self?.friendsForSearch else {return}
+                self?.createHeaderLetters(results: result)
                 self?.tableView.reloadData()
             case .error(let error):
                 print(error)

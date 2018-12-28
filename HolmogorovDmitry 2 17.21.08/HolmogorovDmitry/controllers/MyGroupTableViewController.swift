@@ -115,7 +115,6 @@ extension GroupTableViewController{
             } catch {
                 print(error)
             }
-            self.tableView.reloadData()
         }
     }
 }

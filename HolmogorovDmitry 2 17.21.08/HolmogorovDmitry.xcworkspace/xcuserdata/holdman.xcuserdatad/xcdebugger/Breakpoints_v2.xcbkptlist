@@ -144,23 +144,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567590511.031824"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "tableView(_:prefetchRowsAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567590511.031917"
+            timestampString = "567683357.179805"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "220"
@@ -176,11 +160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567590511.031971"
+            timestampString = "567683357.17987"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "tableView(_:prefetchRowsAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -192,7 +176,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567590511.032021"
+            timestampString = "567683357.1799181"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "tableView(_:prefetchRowsAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
+            timestampString = "567683357.179963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -208,7 +208,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567590511.032078"
+            timestampString = "567683357.180006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -224,7 +224,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567590511.032127"
+            timestampString = "567683357.18005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
