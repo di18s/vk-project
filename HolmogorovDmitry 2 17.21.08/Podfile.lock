@@ -59,6 +59,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PinLayout (1.8.6)
   - Realm (3.11.1):
     - Realm/Headers (= 3.11.1)
   - Realm/Headers (3.11.1)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Database
   - Kingfisher
+  - PinLayout
   - RealmSwift
   - SwiftyJSON
 
@@ -87,6 +89,7 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - nanopb
+    - PinLayout
     - Realm
     - RealmSwift
     - SwiftyJSON
@@ -103,10 +106,11 @@ SPEC CHECKSUMS:
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PinLayout: fe2a2432d6982588e208572005c941aeeae417ab
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
   RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 6f52aed2187d83287fd449b5c03ac4ea5e4eb05e
+PODFILE CHECKSUM: 66a5dc64ed498f100d13c15f656871abe2237917
 
 COCOAPODS: 1.5.3
