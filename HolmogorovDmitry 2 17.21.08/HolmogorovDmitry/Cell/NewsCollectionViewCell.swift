@@ -72,6 +72,13 @@ class NewsCollectionViewCell: UICollectionViewCell {
 
     }
     
+    //TODO:- тут будет ручной лэйаут
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
+    }
+    
     private func runShakeLikeNews(repeats: Bool){
         shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
     }
