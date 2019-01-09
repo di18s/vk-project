@@ -16,6 +16,7 @@ class FriendsTableViewController: UITableViewController, UISearchBarDelegate {
     private let networkService = FriendsNetwork()
     @IBOutlet weak var friendSearchBar: UISearchBar!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
