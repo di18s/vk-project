@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import  PinLayout
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
@@ -72,10 +72,32 @@ class NewsCollectionViewCell: UICollectionViewCell {
 
     }
     
-    //TODO: - тут будет ручной лэйаут
+    //MARK: - тут ручной лэйаут
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        self.whiteBackBottom.pin.width(100%).bottom().height(30)
+        self.imageNews.pin.verticallyBetween(self.whiteBackBottom, and: self .whiteBack).width(100%)
+        self .whiteBack.pin.width(100%).top().height(91)
+        
+        self.buttonLike.pin.vCenter(to: self.whiteBackBottom.edge.vCenter).left().marginLeft(5).size(20)
+        self.labelLike.pin.after(of: self.buttonLike, aligned: .top).marginLeft(5).height(20).width(45)
+        
+        self.commentNews.pin.after(of: self.labelLike, aligned: .top).marginLeft(25).size(20)
+        self.countComments.pin.after(of: self.commentNews, aligned: .top).marginLeft(5).height(20).width(45)
+        
+        self.repostNews.pin.after(of: self.countComments, aligned: .top).marginLeft(25).size(20)
+        self.countReposts.pin.after(of: self.repostNews, aligned: .top).marginLeft(5).height(20).width(45)
+        
+        self.countView.pin.vCenter(to: self.whiteBackBottom.edge.vCenter).right().marginRight(5).height(20).sizeToFit()
+        self.iconView.pin.before(of: self.countView, aligned: .top).marginRight(5).size(20)
+        
+        self.selfCommentNews.pin.above(of: self.imageNews, aligned: .left).height(21)
+        self.userAvatarForNews.pin.above(of: self.selfCommentNews, aligned: .left).size(50).marginBottom(5)
+        
+        self.userNameForNews.pin.after(of: self.userAvatarForNews, aligned: .center).marginLeft(5).height(20).sizeToFit()
+        self.userLastNameForNEws.pin.after(of: self.userNameForNews, aligned: .top).marginLeft(5).height(20).sizeToFit()
+        self.timeOfNews.pin.below(of: self.userNameForNews, aligned: .left).marginTop(1).height(12).sizeToFit()
     }
     
     private func runShakeLikeNews(repeats: Bool){
