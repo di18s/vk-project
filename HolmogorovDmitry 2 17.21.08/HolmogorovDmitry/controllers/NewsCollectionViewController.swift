@@ -1,5 +1,5 @@
 import UIKit
-
+import PinLayout
 
 class NewsCollectionViewController: UICollectionViewController {
 

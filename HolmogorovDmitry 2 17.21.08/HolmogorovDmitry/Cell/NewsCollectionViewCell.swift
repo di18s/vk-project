@@ -141,7 +141,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         self.whiteBackBottom.pin.width(100%).bottom().height(30)
-        self.imageNews.pin.verticallyBetween(self.whiteBackBottom, and: self .whiteBack).width(100%)
+        self.imageNews.pin.verticallyBetween(self.whiteBackBottom, and: self .selfCommentNews).width(100%)
         self .whiteBack.pin.width(100%).top().height(91)
         
         self.buttonLike.pin.vCenter(to: self.whiteBackBottom.edge.vCenter).left().marginLeft(5).size(20)
@@ -156,7 +156,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.countView.pin.vCenter(to: self.whiteBackBottom.edge.vCenter).right().marginRight(5).height(20).sizeToFit()
         self.iconView.pin.before(of: self.countView, aligned: .top).marginRight(5).size(20)
         
-        self.selfCommentNews.pin.above(of: self.imageNews, aligned: .left).height(21).marginLeft(5)
+        self.selfCommentNews.pin.above(of: self.imageNews, aligned: .left).height(21).marginLeft(5).width(100%)
         self.userAvatarForNews.pin.above(of: self.selfCommentNews, aligned: .left).size(50).marginBottom(5)
         
         //с этим проблемы
