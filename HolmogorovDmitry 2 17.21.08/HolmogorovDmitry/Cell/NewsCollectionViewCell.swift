@@ -128,6 +128,8 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.userNameForNews.text = news.nameUser
         self.userLastNameForNEws.text = news.lastNameUser
         
+        searchBar.setNeedsLayout()
+
     }
   
     override func awakeFromNib() {
@@ -159,10 +161,9 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.selfCommentNews.pin.above(of: self.imageNews, aligned: .left).height(21).marginLeft(5).width(100%)
         self.userAvatarForNews.pin.above(of: self.selfCommentNews, aligned: .left).size(50).marginBottom(5)
         
-        //с этим проблемы
-        self.userNameForNews.pin.after(of: self.userAvatarForNews, aligned: .center).marginLeft(5).height(20).width(100).sizeToFit(.widthFlexible)
-        self.userLastNameForNEws.pin.after(of: self.userNameForNews, aligned: .top).marginLeft(5).height(20).width(100).sizeToFit(.widthFlexible)
-        self.timeOfNews.pin.below(of: self.userNameForNews, aligned: .left).marginTop(1).height(12).sizeToFit()
+        self.userNameForNews.pin.after(of: self.userAvatarForNews, aligned: .center).marginLeft(5).height(20).sizeToFit(.height)
+        self.userLastNameForNEws.pin.after(of: self.userNameForNews, aligned: .top).marginLeft(5).height(20).sizeToFit(.height)
+        self.timeOfNews.pin.below(of: self.userNameForNews, aligned: .left).marginTop(1).height(12).sizeToFit(.height)
     }
     
     private func runShakeLikeNews(repeats: Bool){
