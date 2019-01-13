@@ -128,7 +128,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.userNameForNews.text = news.nameUser
         self.userLastNameForNEws.text = news.lastNameUser
         
-        searchBar.setNeedsLayout()
+        setNeedsLayout()
 
     }
   
