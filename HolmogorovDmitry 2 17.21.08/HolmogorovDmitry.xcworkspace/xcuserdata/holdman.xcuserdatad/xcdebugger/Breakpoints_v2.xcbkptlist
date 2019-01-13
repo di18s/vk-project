@@ -128,13 +128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/Cell/NewsCollectionViewCell.swift"
-            timestampString = "567518992.014536"
+            timestampString = "568891779.0923851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "shakeAnimForNews()"
-            landmarkType = "7">
+            startingLineNumber = "267"
+            endingLineNumber = "267">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,13 +142,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567683809.241498"
+            timestampString = "568824046.100137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "220"
             endingLineNumber = "220"
-            landmarkName = "tableView(_:prefetchRowsAt:)"
-            landmarkType = "7">
+            landmarkName = "FriendsTableViewController"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -160,7 +158,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567683809.241552"
+            timestampString = "568824046.100181"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "222"
@@ -176,7 +174,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567683809.24159"
+            timestampString = "568824046.100217"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "226"
@@ -192,7 +190,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567683809.241626"
+            timestampString = "568824046.100253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "35"
@@ -208,7 +206,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567683809.241662"
+            timestampString = "568824046.100287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -224,7 +222,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "HolmogorovDmitry/controllers/FriendsTableViewController.swift"
-            timestampString = "567683809.241696"
+            timestampString = "568824046.100323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"

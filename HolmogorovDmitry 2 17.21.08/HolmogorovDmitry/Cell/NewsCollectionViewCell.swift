@@ -7,29 +7,93 @@
 //
 
 import UIKit
-
+import  PinLayout
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var whiteBackBottom: UIView!
-    @IBOutlet weak var whiteBack: UIView!
-    @IBOutlet weak var selfCommentNews: UILabel!
-    @IBOutlet weak var countReposts: UILabel!
-    @IBOutlet weak var countComments: UILabel!
-    @IBOutlet weak var timeOfNews: UILabel!
+    @IBOutlet weak var whiteBackBottom: UIView! {
+        didSet {
+            whiteBackBottom.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var whiteBack: UIView! {
+        didSet {
+            whiteBack.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var selfCommentNews: UILabel! {
+        didSet {
+            selfCommentNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var countReposts: UILabel! {
+        didSet {
+            countReposts.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var countComments: UILabel! {
+        didSet {
+            countComments.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var timeOfNews: UILabel! {
+        didSet {
+            timeOfNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
     
-    @IBOutlet weak var userLastNameForNEws: UILabel!
-    @IBOutlet weak var userNameForNews: UILabel!
-    @IBOutlet weak var userAvatarForNews: UIImageView!
+    @IBOutlet weak var userLastNameForNEws: UILabel! {
+        didSet {
+            userLastNameForNEws.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var userNameForNews: UILabel! {
+        didSet {
+            userNameForNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var userAvatarForNews: UIImageView! {
+        didSet {
+            userAvatarForNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
     
-    @IBOutlet weak var imageNews: UIImageView!
-    @IBOutlet weak var countView: UILabel!
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var repostNews: UIButton!
-    @IBOutlet weak var commentNews: UIButton!
-    @IBOutlet weak var labelLike: UILabel!
-    @IBOutlet weak var buttonLike: UIButton!
+    @IBOutlet weak var imageNews: UIImageView! {
+        didSet {
+            imageNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var countView: UILabel! {
+        didSet {
+            countView.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var iconView: UIImageView! {
+        didSet {
+            iconView.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var repostNews: UIButton! {
+        didSet {
+            repostNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var commentNews: UIButton! {
+        didSet {
+            commentNews.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var labelLike: UILabel! {
+        didSet {
+            labelLike.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    @IBOutlet weak var buttonLike: UIButton! {
+        didSet {
+            buttonLike.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
     
     private var numberLike: Int = 0
     private var isLike: Bool = false
@@ -64,12 +128,42 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.userNameForNews.text = news.nameUser
         self.userLastNameForNEws.text = news.lastNameUser
         
+        searchBar.setNeedsLayout()
+
     }
   
     override func awakeFromNib() {
         super.awakeFromNib()
         stavLikeNews()
 
+    }
+    
+    //MARK: - тут ручной лэйаут
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.whiteBackBottom.pin.width(100%).bottom().height(30)
+        self.imageNews.pin.verticallyBetween(self.whiteBackBottom, and: self .selfCommentNews).width(100%)
+        self .whiteBack.pin.width(100%).top().height(91)
+        
+        self.buttonLike.pin.vCenter(to: self.whiteBackBottom.edge.vCenter).left().marginLeft(5).size(20)
+        self.labelLike.pin.after(of: self.buttonLike, aligned: .top).marginLeft(5).height(20).width(45)
+        
+        self.commentNews.pin.after(of: self.labelLike, aligned: .top).marginLeft(25).size(20)
+        self.countComments.pin.after(of: self.commentNews, aligned: .top).marginLeft(5).height(20).width(45)
+        
+        self.repostNews.pin.after(of: self.countComments, aligned: .top).marginLeft(25).size(20)
+        self.countReposts.pin.after(of: self.repostNews, aligned: .top).marginLeft(5).height(20).width(45)
+        
+        self.countView.pin.vCenter(to: self.whiteBackBottom.edge.vCenter).right().marginRight(5).height(20).sizeToFit()
+        self.iconView.pin.before(of: self.countView, aligned: .top).marginRight(5).size(20)
+        
+        self.selfCommentNews.pin.above(of: self.imageNews, aligned: .left).height(21).marginLeft(5).width(100%)
+        self.userAvatarForNews.pin.above(of: self.selfCommentNews, aligned: .left).size(50).marginBottom(5)
+        
+        self.userNameForNews.pin.after(of: self.userAvatarForNews, aligned: .center).marginLeft(5).height(20).sizeToFit(.height)
+        self.userLastNameForNEws.pin.after(of: self.userNameForNews, aligned: .top).marginLeft(5).height(20).sizeToFit(.height)
+        self.timeOfNews.pin.below(of: self.userNameForNews, aligned: .left).marginTop(1).height(12).sizeToFit(.height)
     }
     
     private func runShakeLikeNews(repeats: Bool){

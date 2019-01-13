@@ -11,7 +11,7 @@ pod 'Kingfisher'
 pod 'RealmSwift'
 pod 'Firebase'
 pod 'Firebase/Database'
-
+pod 'PinLayout'
   # Pods for HolmogorovDmitry
 
 end
