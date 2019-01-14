@@ -11,89 +11,22 @@ import  PinLayout
 
 class NewsCollectionViewCell: UICollectionViewCell {
     
-    
-    @IBOutlet weak var whiteBackBottom: UIView! {
-        didSet {
-            whiteBackBottom.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var whiteBack: UIView! {
-        didSet {
-            whiteBack.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var selfCommentNews: UILabel! {
-        didSet {
-            selfCommentNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var countReposts: UILabel! {
-        didSet {
-            countReposts.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var countComments: UILabel! {
-        didSet {
-            countComments.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var timeOfNews: UILabel! {
-        didSet {
-            timeOfNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    
-    @IBOutlet weak var userLastNameForNEws: UILabel! {
-        didSet {
-            userLastNameForNEws.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var userNameForNews: UILabel! {
-        didSet {
-            userNameForNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var userAvatarForNews: UIImageView! {
-        didSet {
-            userAvatarForNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    
-    @IBOutlet weak var imageNews: UIImageView! {
-        didSet {
-            imageNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var countView: UILabel! {
-        didSet {
-            countView.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var iconView: UIImageView! {
-        didSet {
-            iconView.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var repostNews: UIButton! {
-        didSet {
-            repostNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var commentNews: UIButton! {
-        didSet {
-            commentNews.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var labelLike: UILabel! {
-        didSet {
-            labelLike.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    @IBOutlet weak var buttonLike: UIButton! {
-        didSet {
-            buttonLike.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
+    @IBOutlet weak var whiteBackBottom: UIView!
+    @IBOutlet weak var whiteBack: UIView!
+    @IBOutlet weak var selfCommentNews: UILabel!
+    @IBOutlet weak var countReposts: UILabel!
+    @IBOutlet weak var countComments: UILabel!
+    @IBOutlet weak var timeOfNews: UILabel!
+    @IBOutlet weak var userLastNameForNEws: UILabel!
+    @IBOutlet weak var userNameForNews: UILabel!
+    @IBOutlet weak var userAvatarForNews: UIImageView!
+    @IBOutlet weak var imageNews: UIImageView!
+    @IBOutlet weak var countView: UILabel!
+    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var repostNews: UIButton!
+    @IBOutlet weak var commentNews: UIButton!
+    @IBOutlet weak var labelLike: UILabel!
+    @IBOutlet weak var buttonLike: UIButton!
     
     private var numberLike: Int = 0
     private var isLike: Bool = false
