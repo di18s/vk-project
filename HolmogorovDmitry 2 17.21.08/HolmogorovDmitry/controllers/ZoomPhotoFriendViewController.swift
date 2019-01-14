@@ -13,6 +13,7 @@ class ZoomPhotoFriendViewController: UIViewController {
         
         let zoomPhotoFriend = UITapGestureRecognizer(target: self, action: #selector(zoomzoom))
         self.zoomPhoto.addGestureRecognizer(zoomPhotoFriend)
+        zoomPhotoFriend.numberOfTapsRequired = 2
         
         let closeAndReturnBack = UISwipeGestureRecognizer(target: self, action: #selector(closeAndBAck))
         closeAndReturnBack.direction = .down

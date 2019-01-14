@@ -26,9 +26,9 @@ class FriendTableViewCell: UITableViewCell{
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        
+        handMadeLayout()
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
