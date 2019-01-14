@@ -1,11 +1,3 @@
-//
-//  NewsCollectionViewCell.swift
-//  contraints
-//
-//  Created by Дмитрий on 02/10/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import  PinLayout
 
@@ -34,44 +26,16 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private let networkService = NewsNetwork()
 
     
-    //MARK: - configure cell
-    private var dateFormatter: DateFormatter {
-        let dt = DateFormatter()
-        dt.dateFormat = "EEEE, HH:mm, yyyy-MM-dd"
-        return dt
-    }
-    
-    public func configureNewsCell(with news: News) {
-        
-        self.selfCommentNews.text = news.selfComment
-        
-        self.countReposts.text = String(news.repostCount)
-
-        self.countComments.text = String(news.countComment)
-        
-        let date = Date(timeIntervalSince1970: news.date)
-        self.timeOfNews.text = dateFormatter.string(from: date)
-        
-        self.countView.text = String(news.countViewNews)
-        
-        
-        self.imageNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.photoNews))
-     
-        self.userAvatarForNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.avatarUser))
-        self.userNameForNews.text = news.nameUser
-        self.userLastNameForNEws.text = news.lastNameUser
-        
-        setNeedsLayout()
-
-    }
-  
     override func awakeFromNib() {
         super.awakeFromNib()
         stavLikeNews()
-
     }
     
-    //MARK: - тут ручной лэйаут
+}
+
+//MARK: - Ручной лэйаут
+extension NewsCollectionViewCell{
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -99,11 +63,11 @@ class NewsCollectionViewCell: UICollectionViewCell {
         self.timeOfNews.pin.below(of: self.userNameForNews, aligned: .left).marginTop(1).height(12).sizeToFit(.height)
     }
     
-    private func runShakeLikeNews(repeats: Bool){
-        shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
-    }
+}
+
+//MARK: - Вся анимация с лайками
+extension NewsCollectionViewCell{
     
-    //MARK:- Animation and func of like
     private func animateLike() {
         
         buttonLike.transform = CGAffineTransform(translationX: 0, y: -bounds.height / 4)
@@ -117,29 +81,6 @@ class NewsCollectionViewCell: UICollectionViewCell {
                         self.buttonLike.transform = .identity
                         self.labelLike.transform = .identity
         })
-    }
-    
-    func touchLikeForNews(_ infoForNews: News){
-        switch infoForNews.isLike {
-        case 1:
-            labelLike.text = String(infoForNews.countLikeNews)
-            labelLike.textColor = UIColor.red
-            buttonLike.setImage(UIImage(named: "21"), for: .normal)
-            shakeLikeNews?.invalidate()
-            isLike = true
-        case 0:
-            labelLike.text = String(infoForNews.countLikeNews)
-            if labelLike.text == String(0){
-                self.labelLike.isHidden = true
-            }else if labelLike.text != String(0){
-               self.labelLike.isHidden = false
-            }
-            runShakeLikeNews(repeats: true)
-            buttonLike.setImage(UIImage(named: "20"), for: .normal)
-            isLike = false
-        default:
-            break
-        }
     }
     
     @objc func tapForNews(){
@@ -179,7 +120,7 @@ class NewsCollectionViewCell: UICollectionViewCell {
         let reconizer = UITapGestureRecognizer(target: self, action: #selector(tapForNews))
         buttonLike.addGestureRecognizer(reconizer)
     }
-
+    
     //MARK:- Animation spring like
     @objc func shakeAnimForNews () {
         let shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
@@ -196,5 +137,63 @@ class NewsCollectionViewCell: UICollectionViewCell {
         shake.fromValue = from_value
         shake.toValue = to_value
         self.buttonLike.layer.add(shake, forKey: "position")
+    }
+    
+    private func runShakeLikeNews(repeats: Bool){
+        shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
+    }
+}
+
+//MARK: - Конфигурация ячеек
+extension NewsCollectionViewCell{
+    
+    private var dateFormatter: DateFormatter {
+        let dt = DateFormatter()
+        dt.dateFormat = "EEEE, HH:mm, yyyy-MM-dd"
+        return dt
+    }
+    
+    public func configureNewsCell(with news: News) {
+        
+        self.selfCommentNews.text = news.selfComment
+        
+        self.countReposts.text = String(news.repostCount)
+        
+        self.countComments.text = String(news.countComment)
+        
+        let date = Date(timeIntervalSince1970: news.date)
+        self.timeOfNews.text = dateFormatter.string(from: date)
+        
+        self.countView.text = String(news.countViewNews)
+        
+        
+        self.imageNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.photoNews))
+        
+        self.userAvatarForNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.avatarUser))
+        self.userNameForNews.text = news.nameUser
+        self.userLastNameForNEws.text = news.lastNameUser
+        
+        switch news.isLike {
+        case 1:
+            labelLike.text = String(news.countLikeNews)
+            labelLike.textColor = UIColor.red
+            buttonLike.setImage(UIImage(named: "21"), for: .normal)
+            shakeLikeNews?.invalidate()
+            isLike = true
+        case 0:
+            labelLike.text = String(news.countLikeNews)
+            if labelLike.text == String(0){
+                self.labelLike.isHidden = true
+            }else if labelLike.text != String(0){
+                self.labelLike.isHidden = false
+            }
+            runShakeLikeNews(repeats: true)
+            buttonLike.setImage(UIImage(named: "20"), for: .normal)
+            isLike = false
+        default:
+            break
+        }
+        
+        setNeedsLayout()
     }
 }

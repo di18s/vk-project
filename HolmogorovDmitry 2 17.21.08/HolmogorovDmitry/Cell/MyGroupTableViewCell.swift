@@ -1,14 +1,7 @@
-//
-//  GroupTableViewCell.swift
-//  contraints
-//
-//  Created by Дмитрий on 25/09/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import  SwiftyJSON
 import  Kingfisher
+import  PinLayout
 
 class MyGroupTableViewCell: UITableViewCell {
     
@@ -21,12 +14,24 @@ class MyGroupTableViewCell: UITableViewCell {
         self.labelGroup.text = group.nameGroup
         self.infoLabelMyGroup.text = group.infoLabel
         self.imageGroup.kf.setImage(with: PhotoNetwork.urlForPhoto(group.avatarGroup))
+        
+        setNeedsLayout()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        handMadeLayout()
+    }
+    
+    private func handMadeLayout(){
+        self.imageGroup.pin.size(50).vCenter().left(15)
+        self.labelGroup.pin.after(of: self.imageGroup, aligned: .center).height(18).marginLeft(15).sizeToFit(.height)
+        self.infoLabelMyGroup.pin.below(of: self.labelGroup, aligned: .left).height(10).sizeToFit(.height).marginTop(1)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

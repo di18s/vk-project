@@ -1,5 +1,4 @@
 import UIKit
-import PinLayout
 
 class NewsCollectionViewController: UICollectionViewController {
 
@@ -42,7 +41,6 @@ class NewsCollectionViewController: UICollectionViewController {
             fatalError("The dequeued cell is not an instance of VKTableViewCell.")}
         
         cell.configureNewsCell(with: newsArray[indexPath.row])
-        cell.touchLikeForNews(newsArray[indexPath.row])
         
         return cell
     }

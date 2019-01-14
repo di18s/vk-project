@@ -1,14 +1,6 @@
-//
-//  CollectionViewCell.swift
-//  HolmogorovDmitry
-//
-//  Created by Дмитрий on 03/12/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import  Kingfisher
-
+import  PinLayout
 
 
 class MyPhotoCollectionViewCell: UICollectionViewCell {
@@ -20,9 +12,21 @@ class MyPhotoCollectionViewCell: UICollectionViewCell {
         
     }
    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
     public func configurePhotoCell(with photo: MyPhoto) {
         
         self.myPhotoImg.kf.setImage(with: PhotoNetwork.urlForPhoto(photo.photo))
+        
+        setNeedsLayout()
+    }
+    
+    private func handMadeLayout(){
+        self.myPhotoImg.pin.size(100).topLeft().marginLeft(1)
     }
 }
+
 

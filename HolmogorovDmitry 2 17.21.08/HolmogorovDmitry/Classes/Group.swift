@@ -15,7 +15,7 @@ class Group: Object {
     
     dynamic var nameGroup: String = ""
     dynamic var avatarGroup: String = ""
-    var infoLabel: String = ""
+    dynamic var infoLabel: String = ""
     dynamic var idGroup: Int = 0
     
     var toAnyObject: Any {

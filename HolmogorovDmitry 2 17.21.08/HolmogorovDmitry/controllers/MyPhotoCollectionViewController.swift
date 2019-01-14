@@ -4,7 +4,6 @@ import  Kingfisher
 import RealmSwift
 
 class MyPhotoCollectionViewController: UICollectionViewController {
-    //var myPhoto = [MyPhoto]()
     var myPhotosRealm: Results<MyPhoto>?
     private var tokenMyPhoto: NotificationToken?
     private let networkServiceMyPhoto = PhotoNetwork()

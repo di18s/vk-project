@@ -1,11 +1,3 @@
-//
-//  SelfInfoTableViewCell.swift
-//  HolmogorovDmitry
-//
-//  Created by Дмитрий on 02/12/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 
 class SelfInfoTableViewCell: UITableViewCell {

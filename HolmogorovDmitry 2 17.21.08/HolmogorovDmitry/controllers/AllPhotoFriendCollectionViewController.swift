@@ -89,7 +89,6 @@ extension AllPhotoCollectionViewController{
         
         // Configure the cell
         cell.configurePhotoFriendCell(with: photos_Realm[indexPath.row])
-        cell.touchLike(photos_Realm[indexPath.row])
         
         return cell
     }

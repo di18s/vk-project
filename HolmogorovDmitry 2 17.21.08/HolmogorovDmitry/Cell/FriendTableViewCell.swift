@@ -1,11 +1,3 @@
-//
-//  VKTableViewCell.swift
-//  contraints
-//
-//  Created by Дмитрий on 21/09/2018.
-//  Copyright © 2018 Dmitry. All rights reserved.
-//
-
 import UIKit
 import  SwiftyJSON
 import  Kingfisher
