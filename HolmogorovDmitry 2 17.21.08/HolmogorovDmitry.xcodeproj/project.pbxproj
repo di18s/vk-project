@@ -237,9 +237,8 @@
 		E8AFD06E21538E2000D4EE4A /* HolmogorovDmitry */ = {
 			isa = PBXGroup;
 			children = (
-				E85311FB21B044BE0084D125 /* GoogleService-Info.plist */,
-				E8143666215FD2D6007B040F /* Main.storyboard */,
 				E8AFD06F21538E2100D4EE4A /* AppDelegate.swift */,
+				E8143666215FD2D6007B040F /* Main.storyboard */,
 				E8130F9921A15D3D0040E494 /* DatabaseService.swift */,
 				E86586B92176503500B894D4 /* Transitions */,
 				E8BBD7132195A98600F33A47 /* Network */,
@@ -248,6 +247,7 @@
 				E8143634215A6028007B040F /* Cell */,
 				E8AFD07821538E2200D4EE4A /* LaunchScreen.storyboard */,
 				E837631F21D6223600125FE5 /* Assets.xcassets */,
+				E85311FB21B044BE0084D125 /* GoogleService-Info.plist */,
 				E8AFD07B21538E2200D4EE4A /* Info.plist */,
 			);
 			path = HolmogorovDmitry;

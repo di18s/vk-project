@@ -53,7 +53,7 @@ extension AllPhotoCollectionViewCell{
             count_like_photo.text = String(photo.countLike)
             count_like_photo.textColor = UIColor.red
             self.like_heart_forPhoto.setImage(UIImage(named: "21"), for: .normal)
-            shakeLike?.invalidate() //если наш лайк стоит то репит откл
+            shakeLike?.invalidate() //если наш лайк стоит то репит откл(по идее можно удалить вообще)
             self.isLike = true
         case 0:
             count_like_photo.text = String(photo.countLike)
@@ -80,7 +80,29 @@ extension AllPhotoCollectionViewCell{
     private func runShakeLike(repeats: Bool){
         shakeLike = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnim), userInfo: nil, repeats: repeats)
     }
+    @objc func shakeAnim () { //работает когда лайка нету (скачет сердечко)
+        let shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
+        shake.duration = 0.1
+        shake.repeatCount = 2
+        shake.autoreverses = true
+        
+        let from_point:CGPoint = CGPoint(x:self.like_heart_forPhoto.frame.midX ,y: self.like_heart_forPhoto.frame.midY - 5)
+        let from_value:NSValue = NSValue(cgPoint: from_point)
+        
+        let to_point:CGPoint = CGPoint(x:self.like_heart_forPhoto.frame.midX ,y: self.like_heart_forPhoto.frame.midY + 5)
+        let to_value:NSValue = NSValue(cgPoint: to_point)
+        
+        shake.fromValue = from_value
+        shake.toValue = to_value
+        self.like_heart_forPhoto.layer.add(shake, forKey: "position")
+    }
     
+    
+    //MARK: -  рекогнайзер для лайков
+    private func stavLike(){ //это во ViewDidLoad
+        let reconizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+        like_heart_forPhoto.addGestureRecognizer(reconizer)
+    }
     @objc func tap(){ //для рекогнайзера когда ставим или убираем лайк
         switch isLike {
         case true:
@@ -110,35 +132,11 @@ extension AllPhotoCollectionViewCell{
             count_like_photo.textColor = UIColor.red
             animateLike() //прилетает сердечко и цыфра
             shakeLike.invalidate() //поставили лайк репит отключается
-            isLike = true
+            isLike = true 
             self.likeNetworkService.addLikeForPhotoAlamofire(ownerId: owner_id, itemId: item_id, type: "photo")
         }
     }
-    
-    private func stavLike(){ //это во ViewDidLoad
-        like_heart_forPhoto.setImage(UIImage(named: "20"), for: .normal)
-        let reconizer = UITapGestureRecognizer(target: self, action: #selector(tap))
-        like_heart_forPhoto.addGestureRecognizer(reconizer)
-    }
    
-    //MARK:- Animation spring like
-    @objc func shakeAnim () { //работает когда лайка нету (скачет сердечко)
-        let shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
-        shake.repeatCount = 2
-        shake.autoreverses = true
-        
-        let from_point:CGPoint = CGPoint(x:self.like_heart_forPhoto.frame.midX ,y: self.like_heart_forPhoto.frame.midY - 5)
-        let from_value:NSValue = NSValue(cgPoint: from_point)
-        
-        let to_point:CGPoint = CGPoint(x:self.like_heart_forPhoto.frame.midX ,y: self.like_heart_forPhoto.frame.midY + 5)
-        let to_value:NSValue = NSValue(cgPoint: to_point)
-        
-        shake.fromValue = from_value
-        shake.toValue = to_value
-        self.like_heart_forPhoto.layer.add(shake, forKey: "position")
-    }
-    
     //MARK:- Animation of like
     private func animateLike() { //срабатывает когда ставим лайк
         

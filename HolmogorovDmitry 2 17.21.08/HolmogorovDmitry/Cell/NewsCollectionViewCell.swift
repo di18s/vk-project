@@ -69,7 +69,6 @@ extension NewsCollectionViewCell{
 extension NewsCollectionViewCell{
     
     private func animateLike() {
-        
         buttonLike.transform = CGAffineTransform(translationX: 0, y: -bounds.height / 4)
         labelLike.transform = CGAffineTransform(translationX: 50, y: -bounds.height / 10)
         UIView.animate(withDuration: 2,
@@ -83,6 +82,12 @@ extension NewsCollectionViewCell{
         })
     }
     
+    
+    private func stavLikeNews(){
+        buttonLike.setImage(UIImage(named: "20"), for: .normal)
+        let reconizer = UITapGestureRecognizer(target: self, action: #selector(tapForNews))
+        buttonLike.addGestureRecognizer(reconizer)
+    }
     @objc func tapForNews(){
         switch isLike {
         case true:
@@ -115,12 +120,10 @@ extension NewsCollectionViewCell{
         }
     }
     
-    private func stavLikeNews(){
-        buttonLike.setImage(UIImage(named: "20"), for: .normal)
-        let reconizer = UITapGestureRecognizer(target: self, action: #selector(tapForNews))
-        buttonLike.addGestureRecognizer(reconizer)
+   
+    private func runShakeLikeNews(repeats: Bool){
+        shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
     }
-    
     //MARK:- Animation spring like
     @objc func shakeAnimForNews () {
         let shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
@@ -138,10 +141,7 @@ extension NewsCollectionViewCell{
         shake.toValue = to_value
         self.buttonLike.layer.add(shake, forKey: "position")
     }
-    
-    private func runShakeLikeNews(repeats: Bool){
-        shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
-    }
+
 }
 
 //MARK: - Конфигурация ячеек
@@ -166,7 +166,6 @@ extension NewsCollectionViewCell{
         
         self.countView.text = String(news.countViewNews)
         
-        
         self.imageNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.photoNews))
         
         self.userAvatarForNews.kf.setImage(with: PhotoNetwork.urlForPhoto(news.avatarUser))
@@ -178,7 +177,6 @@ extension NewsCollectionViewCell{
             labelLike.text = String(news.countLikeNews)
             labelLike.textColor = UIColor.red
             buttonLike.setImage(UIImage(named: "21"), for: .normal)
-            shakeLikeNews?.invalidate()
             isLike = true
         case 0:
             labelLike.text = String(news.countLikeNews)
