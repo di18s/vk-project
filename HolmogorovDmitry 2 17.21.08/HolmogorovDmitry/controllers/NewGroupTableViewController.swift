@@ -20,9 +20,8 @@ class NewGroupTableViewController: UITableViewController, UISearchBarDelegate {
         setUpSearchBar()
 
     }
-
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -41,7 +40,7 @@ class NewGroupTableViewController: UITableViewController, UISearchBarDelegate {
 
         return cell
     }
-
+    
     //MARK:- search bar
     private func setUpSearchBar(){
         searchNewGroup.delegate = self

@@ -24,6 +24,11 @@ class NewsCollectionViewController: UICollectionViewController {
         }
     }
 
+    private lazy var dateFormatter: DateFormatter = {
+        let dt = DateFormatter()
+        dt.dateFormat = "EEEE, HH:mm, yyyy-MM-dd"
+        return dt
+    }()
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -40,7 +45,7 @@ class NewsCollectionViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as? NewsCollectionViewCell else{
             fatalError("The dequeued cell is not an instance of VKTableViewCell.")}
         
-        cell.configureNewsCell(with: newsArray[indexPath.row])
+        cell.configureNewsCell(with: newsArray[indexPath.row], dateFormatter: dateFormatter)
         
         return cell
     }

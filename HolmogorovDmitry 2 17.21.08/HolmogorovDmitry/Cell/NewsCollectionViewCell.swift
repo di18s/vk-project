@@ -147,13 +147,9 @@ extension NewsCollectionViewCell{
 //MARK: - Конфигурация ячеек
 extension NewsCollectionViewCell{
     
-    private var dateFormatter: DateFormatter {
-        let dt = DateFormatter()
-        dt.dateFormat = "EEEE, HH:mm, yyyy-MM-dd"
-        return dt
-    }
+   
     
-    public func configureNewsCell(with news: News) {
+    public func configureNewsCell(with news: News, dateFormatter: DateFormatter ) {
         
         self.selfCommentNews.text = news.selfComment
         
