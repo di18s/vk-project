@@ -25,7 +25,7 @@ class Like {
         })
     }
     
-    func tapLike(isLike: inout Bool, labelLike: UILabel, buttonLike: UIButton, timer: inout Timer, timeInterval: TimeInterval, target: Any, selector: Selector, complition: ((Int, Int, String) -> Void)? = nil){
+    func tapLike(isLike: inout Bool, labelLike: UILabel, buttonLike: UIButton, timer: inout Timer, timeInterval: TimeInterval, target: Any, selector: Selector){
         switch isLike {
         case true:
             
