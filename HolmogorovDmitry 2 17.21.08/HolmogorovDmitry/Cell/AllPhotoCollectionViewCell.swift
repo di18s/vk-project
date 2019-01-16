@@ -32,6 +32,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         shakeLike.invalidate()
+        setNeedsLayout()
     }
     
     private func handMadeLayout(){
@@ -60,20 +61,22 @@ extension AllPhotoCollectionViewCell{
             self.isLike = true
         case 0:
             count_like_photo.text = String(photo.countLike)
+            
             if count_like_photo.text == String(0){
                 self.count_like_photo.isHidden = true
             }else if count_like_photo.text != String(0){
                 self.count_like_photo.isHidden = false
             }
+            
             self.like_heart_forPhoto.setImage(UIImage(named: "20"), for: .normal)
-            //runShakeLike(repeats: true)
+            
             self.shakeLike = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(shakeAnimForPhoto), userInfo: nil, repeats: true)
+            
             self.isLike = false
         default:
             break
         }
         
-        setNeedsLayout()
     }
 }
 
