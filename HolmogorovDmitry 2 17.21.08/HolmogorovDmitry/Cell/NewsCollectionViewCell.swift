@@ -24,13 +24,19 @@ class NewsCollectionViewCell: UICollectionViewCell {
     private var isLike: Bool = false
     private var shakeLikeNews: Timer!
     private let networkService = NewsNetwork()
-
+    private let like = Like()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         stavLikeNews()
+        
     }
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        shakeLikeNews.invalidate()
+        setNeedsLayout()
+        layoutIfNeeded()
+    }
 }
 
 //MARK: - Ручной лэйаут
@@ -69,19 +75,8 @@ extension NewsCollectionViewCell{
 extension NewsCollectionViewCell{
     
     private func animateLike() {
-        buttonLike.transform = CGAffineTransform(translationX: 0, y: -bounds.height / 4)
-        labelLike.transform = CGAffineTransform(translationX: 50, y: -bounds.height / 10)
-        UIView.animate(withDuration: 2,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.buttonLike.transform = .identity
-                        self.labelLike.transform = .identity
-        })
+        self.like.animateLike(buttonLike: self.buttonLike, labelLike: self.labelLike)
     }
-    
     
     private func stavLikeNews(){
         buttonLike.setImage(UIImage(named: "20"), for: .normal)
@@ -89,64 +84,16 @@ extension NewsCollectionViewCell{
         buttonLike.addGestureRecognizer(reconizer)
     }
     @objc func tapForNews(){
-        switch isLike {
-        case true:
-            
-            if labelLike.text == String(0){
-                self.labelLike.isHidden = true
-            }else if labelLike.text != String(0){
-                self.labelLike.isHidden = false
-            }
-            self.labelLike.text = String(Int(self.labelLike.text!)! - 1)
-            UIView.transition(with: buttonLike,
-                              duration: 0.45,
-                              options: .transitionFlipFromTop,
-                              animations: {
-                                self.buttonLike.setImage(UIImage(named: "20"), for: .normal)
-                                
-            })
-            
-            labelLike.textColor = UIColor.black
-            runShakeLikeNews(repeats: true)
-            isLike = false
-        case false:
-            buttonLike.setImage(UIImage(named: "21"), for: .normal)
-            labelLike.text = String(Int(labelLike.text!)! + 1)
-            self.labelLike.isHidden = false
-            labelLike.textColor = UIColor.red
-            animateLike()
-            shakeLikeNews.invalidate()
-            isLike = true
-        }
-    }
-    
-   
-    private func runShakeLikeNews(repeats: Bool){
-        shakeLikeNews = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: repeats)
+        self.like.tapLike(isLike: &self.isLike, labelLike: self.labelLike, buttonLike: self.buttonLike, timer: &self.shakeLikeNews, timeInterval: 5.0, target: self, selector: #selector(shakeAnimForNews))
     }
     //MARK:- Animation spring like
     @objc func shakeAnimForNews () {
-        let shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
-        shake.repeatCount = 2
-        shake.autoreverses = true
-        
-        let from_point:CGPoint = CGPoint(x:self.buttonLike.frame.midX ,y: self.buttonLike.frame.midY - 5)
-        let from_value:NSValue = NSValue(cgPoint: from_point)
-        
-        let to_point:CGPoint = CGPoint(x:self.buttonLike.frame.midX ,y: self.buttonLike.frame.midY + 5)
-        let to_value:NSValue = NSValue(cgPoint: to_point)
-        
-        shake.fromValue = from_value
-        shake.toValue = to_value
-        self.buttonLike.layer.add(shake, forKey: "position")
+        self.like.shakeLike(button: self.buttonLike)
     }
-
 }
 
 //MARK: - Конфигурация ячеек
 extension NewsCollectionViewCell{
-    
    
     
     public func configureNewsCell(with news: News, dateFormatter: DateFormatter ) {
@@ -176,18 +123,20 @@ extension NewsCollectionViewCell{
             isLike = true
         case 0:
             labelLike.text = String(news.countLikeNews)
+            
             if labelLike.text == String(0){
                 self.labelLike.isHidden = true
             }else if labelLike.text != String(0){
                 self.labelLike.isHidden = false
             }
-            runShakeLikeNews(repeats: true)
+            
+            self.shakeLikeNews = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(shakeAnimForNews), userInfo: nil, repeats: true)
+            
             buttonLike.setImage(UIImage(named: "20"), for: .normal)
             isLike = false
         default:
             break
         }
         
-        setNeedsLayout()
     }
 }

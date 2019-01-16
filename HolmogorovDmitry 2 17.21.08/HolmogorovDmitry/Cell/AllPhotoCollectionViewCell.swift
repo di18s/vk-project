@@ -15,6 +15,7 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
     private var shakeLike: Timer!
     private let networkService = PhotoNetwork()
     private var likeNetworkService = LikeNetwork()
+    private let like = Like()
     var owner_id = 0
     var item_id = 0
     
@@ -26,8 +27,11 @@ class AllPhotoCollectionViewCell: UICollectionViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         handMadeLayout()
+    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        shakeLike.invalidate()
     }
     
     private func handMadeLayout(){
@@ -53,7 +57,6 @@ extension AllPhotoCollectionViewCell{
             count_like_photo.text = String(photo.countLike)
             count_like_photo.textColor = UIColor.red
             self.like_heart_forPhoto.setImage(UIImage(named: "21"), for: .normal)
-            shakeLike?.invalidate() //если наш лайк стоит то репит откл(по идее можно удалить вообще)
             self.isLike = true
         case 0:
             count_like_photo.text = String(photo.countLike)
@@ -63,8 +66,9 @@ extension AllPhotoCollectionViewCell{
                 self.count_like_photo.isHidden = false
             }
             self.like_heart_forPhoto.setImage(UIImage(named: "20"), for: .normal)
-            runShakeLike(repeats: true) //если наш лайк не стоит то репит вкл
-            self.isLike = false //возможно с передачей этого праметра проблемы и у меня скачет чаще чем надо
+            //runShakeLike(repeats: true)
+            self.shakeLike = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(shakeAnimForPhoto), userInfo: nil, repeats: true)
+            self.isLike = false
         default:
             break
         }
@@ -77,80 +81,21 @@ extension AllPhotoCollectionViewCell{
 //MARK: - вся анимация с лайками
 extension AllPhotoCollectionViewCell{
     
-    private func runShakeLike(repeats: Bool){
-        shakeLike = Timer.scheduledTimer(timeInterval: 5.10, target: self, selector: #selector(shakeAnim), userInfo: nil, repeats: repeats)
-    }
-    @objc func shakeAnim () { //работает когда лайка нету (скачет сердечко)
-        let shake:CABasicAnimation = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
-        shake.repeatCount = 2
-        shake.autoreverses = true
-        
-        let from_point:CGPoint = CGPoint(x:self.like_heart_forPhoto.frame.midX ,y: self.like_heart_forPhoto.frame.midY - 5)
-        let from_value:NSValue = NSValue(cgPoint: from_point)
-        
-        let to_point:CGPoint = CGPoint(x:self.like_heart_forPhoto.frame.midX ,y: self.like_heart_forPhoto.frame.midY + 5)
-        let to_value:NSValue = NSValue(cgPoint: to_point)
-        
-        shake.fromValue = from_value
-        shake.toValue = to_value
-        self.like_heart_forPhoto.layer.add(shake, forKey: "position")
+    private func animateLike() {
+        self.like.animateLike(buttonLike: self.like_heart_forPhoto, labelLike: self.count_like_photo)
     }
     
-    
-    //MARK: -  рекогнайзер для лайков
-    private func stavLike(){ //это во ViewDidLoad
-        let reconizer = UITapGestureRecognizer(target: self, action: #selector(tap))
+    private func stavLike(){
+        like_heart_forPhoto.setImage(UIImage(named: "20"), for: .normal)
+        let reconizer = UITapGestureRecognizer(target: self, action: #selector(tapForPhoto))
         like_heart_forPhoto.addGestureRecognizer(reconizer)
     }
-    @objc func tap(){ //для рекогнайзера когда ставим или убираем лайк
-        switch isLike {
-        case true:
-            
-            if count_like_photo.text == String(0){
-                self.count_like_photo.isHidden = true
-            }else {
-                self.count_like_photo.isHidden = false
-            }
-            count_like_photo.text = String(Int(count_like_photo.text!)! - 1)
-            
-            UIView.transition(with: like_heart_forPhoto,
-                              duration: 0.45,
-                              options: .transitionFlipFromTop,
-                              animations: {
-                                self.like_heart_forPhoto.setImage(UIImage(named: "20"), for: .normal)
-            })
-            
-            count_like_photo.textColor = UIColor.black
-            runShakeLike(repeats: true) //убрали лайк репит включился
-            isLike = false
-            self.likeNetworkService.dismissLikeForPhotoAlamofire(ownerId: self.owner_id, itemId: self.item_id, type: "photo")
-        case false:
-            like_heart_forPhoto.setImage(UIImage(named: "21"), for: .normal)
-            count_like_photo.text = String(Int(count_like_photo.text!)! + 1)
-            self.count_like_photo.isHidden = false
-            count_like_photo.textColor = UIColor.red
-            animateLike() //прилетает сердечко и цыфра
-            shakeLike.invalidate() //поставили лайк репит отключается
-            isLike = true 
-            self.likeNetworkService.addLikeForPhotoAlamofire(ownerId: owner_id, itemId: item_id, type: "photo")
-        }
+    @objc func tapForPhoto(){
+        self.like.tapLikeForPhoto(isLike: &self.isLike, labelLike: self.count_like_photo, buttonLike: self.like_heart_forPhoto, timer: &self.shakeLike, timeInterval: 5.0, target: self, selector: #selector(shakeAnimForPhoto), ownerId: self.owner_id, itemId: self.item_id, type: "photo")
     }
-   
-    //MARK:- Animation of like
-    private func animateLike() { //срабатывает когда ставим лайк
-        
-        like_heart_forPhoto.transform = CGAffineTransform(translationX: 0, y: -bounds.height / 4)
-        count_like_photo.transform = CGAffineTransform(translationX: 50, y: -bounds.height / 10)
-        UIView.animate(withDuration: 2,
-                       delay: 0,
-                       usingSpringWithDamping: 0.3,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.like_heart_forPhoto.transform = .identity
-                        self.count_like_photo.transform = .identity
-        })
+    //MARK:- Animation spring like
+    @objc func shakeAnimForPhoto () {
+        self.like.shakeLike(button: self.like_heart_forPhoto)
     }
 
 }
